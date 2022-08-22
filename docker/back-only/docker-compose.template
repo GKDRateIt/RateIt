@@ -1,0 +1,18 @@
+services:
+  web:
+    image: openjdk:17-slim-bullseye
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: __WEB_SRC
+        target: /app
+    command: [ "java", "-jar", "__JAR_NAME" ]
+  database:
+    image: postgres:14.5-bullseye
+    environment:
+      - POSTGRES_PASSWORD=112233445566
+    command: [ "postgres" ]
