@@ -1,3 +1,8 @@
 [submodule "back-end"]
 	path = back-end
 	url = https://github.com/GKDRateIt/back-end.git
+	shallow = true
+[submodule "front-end"]
+	path = front-end
+	url = https://github.com/GKDRateIt/front-end.git
+	shallow = true
