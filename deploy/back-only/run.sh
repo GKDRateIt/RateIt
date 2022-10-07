@@ -2,6 +2,16 @@
 
 # https://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
 self="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+workspace=$(dirname $(dirname $self))
+
+pushd $workspace/back-end 
+
+./gradlew wrapper && \
+./gradlew shadowJar
+
+popd
+
+cp $workspace/back-end/build/libs/*-shadow.jar $self/app
 
 jar_name=$(ls $self/app | grep jar)
 
