@@ -1,11 +1,15 @@
 $Self = Split-Path -Parent $MyInvocation.MyCommand.Source
 # Write-Output $Self
+$Workspace = $(Get-Item $Self).Parent.Parent.FullName
 
-$Workspace = $(Get-Item $Self).Parent.Parent
+Push-Location $Workspace\back-end
 
-Push-Location $Workspace/back-end
+./gradlew.bat wrapper
 
-./gradlew.bat wrapper && ./gradlew.bat shadowJar
+if ($?)
+{
+    ./gradlew.bat shadowJar
+}
 
 Pop-Location
 
@@ -18,8 +22,10 @@ $ComposeYml = (Get-Content $Self/docker-compose.template).
 replace("__WEB_SRC", "$Self\\app"). 
 replace("__JAR_NAME", "$JarName").
 replace( "__DB_INIT", "$Self\\db-init")
+replace( "__NGINX_CONF", "$Self\\proxy\\nginx.conf")
 # Write-Output $ComposeYml
 $TmpFile = New-TemporaryFile
-$ComposeYml | Out-File -Path $TmpFile.FullName
+# Write-Output $TmpFile
+$ComposeYml | Out-File  $TmpFile.FullName
 docker.exe compose --file $TmpFile.FullName up
 docker.exe compose --file $TmpFile.FullName rm -fsv

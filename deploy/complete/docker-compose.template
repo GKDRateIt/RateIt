@@ -21,4 +21,12 @@ services:
       - POSTGRES_PASSWORD=112233445566
       - POSTGRES_DB=gkd_rate_it_test
     command: [ "postgres" ]
-  
+  nginx:
+    image: nginx
+    working_dir: /app
+    ports:
+      - target: 80                    
+        published: 80    
+    volumes:
+      - __DIST_SRC:/app
+      - __NGINX_CONF:/etc/nginx/nginx.conf

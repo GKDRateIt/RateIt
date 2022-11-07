@@ -1,0 +1,11 @@
+{
+    "port": 8080,
+    "signSecret": "test_secret_gkd_rate_it",
+    "maintainerEmailAddr": "???",
+    "maintainerEmailPassword": "???",
+    "maintainerEmailSmtpHostName": "smtp-mail.outlook.com",
+    "maintainerEmailSmtpHostPort": 587,
+    "databaseURL": "jdbc:postgresql://database:5432/gkd_rate_it_test",
+    "databaseUser": "postgres",
+    "databasePassword": "112233445566"
+  }
