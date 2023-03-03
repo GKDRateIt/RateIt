@@ -34,9 +34,11 @@ CREATE TABLE Courses (
     c_credit             decimal(4,2) NOT NULL,
     c_degree             int          NOT NULL, -- 0,
     c_status             int          NOT NULL, -- 0 = "unverified", 1 = "verified"
+    c_submit_user_id     int          NOT NULL,
 
     PRIMARY KEY(c_course_id),
     FOREIGN KEY(c_teacher_id) REFERENCES Teachers(t_teacher_id),
+    FOREIGN KEY(c_submit_user_id) REFERENCES Users(u_user_id),
     UNIQUE (c_course_code, c_course_code_seq, c_teacher_id)
 );
 
@@ -81,14 +83,14 @@ VALUES ('莱布尼茨第 128 代传人', 'teacher_3@mails.ucas.ac.cn');
 INSERT INTO teachers (c_teacher_name, c_teacher_email)
 VALUES ('等于是', 'teacher_4@mails.ucas.ac.cn');
 
-INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status)
-VALUES ('B0911011Y', '02', '操作系统研讨课', 4, 'autumn', 2.0, 0, 1);
-INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status)
-VALUES ('B0912024Y', null, '计算机网络', 1, 'autumn', 3.0, 0, 1);
-INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status)
-VALUES ('B0911002Y', '01', '数据结构', 2, 'spring', 3.0, 0, 1);
-INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status)
-VALUES ('B????????', null, '一个未审核通过的课程', 1, 'spring', 3.0, 0, 0);
+INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status, c_submit_user_id)
+VALUES ('B0911011Y', '02', '操作系统研讨课', 4, 'autumn', 2.0, 0, 1, 1);
+INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status, c_submit_user_id)
+VALUES ('B0912024Y', null, '计算机网络', 1, 'autumn', 3.0, 0, 1, 1);
+INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status, c_submit_user_id)
+VALUES ('B0911002Y', '01', '数据结构', 2, 'spring', 3.0, 0, 1, 1);
+INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_status, c_submit_user_id)
+VALUES ('B????????', null, '一个未审核通过的课程', 1, 'spring', 3.0, 0, 0, 1);
 
 INSERT INTO reviews (r_course_id, r_user_id, r_create_time, r_last_update_time, r_overall_rec, r_rate_quality,
                      r_rate_difficulty, r_rate_workload, r_comment_text, r_my_grade, r_my_major)
