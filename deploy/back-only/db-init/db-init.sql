@@ -87,6 +87,8 @@ INSERT INTO teachers (c_teacher_name, c_teacher_email)
 VALUES ('莱布尼茨第 128 代传人', 'teacher_3@mails.ucas.ac.cn');
 INSERT INTO teachers (c_teacher_name, c_teacher_email)
 VALUES ('等于是', 'teacher_4@mails.ucas.ac.cn');
+INSERT INTO teachers (c_teacher_name, c_teacher_email)
+VALUES ('包包', 'teacher_5@mails.ucas.ac.cn');
 
 INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_category,
                      c_status, c_submit_user_id)
@@ -100,7 +102,14 @@ VALUES ('B0911002Y', '01', '数据结构', 2, 'spring', 3.0, 0, 'specialized', 1
 INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_category,
                      c_status, c_submit_user_id)
 VALUES ('B????????', null, '一个未审核通过的课程', 1, 'spring', 3.0, 0, 'specialized', 0, 1);
+INSERT INTO courses (c_course_code, c_course_code_seq, c_course_name, c_teacher_id, c_semester, c_credit, c_degree, c_category,
+                     c_status, c_submit_user_id)
+VALUES ('B0911011Y', '01', '操作系统研讨课', 5, 'autumn', 2.0, 0, 'specialized', 1, 1);
 
+
+INSERT INTO reviews (r_course_id, r_user_id, r_create_time, r_last_update_time, r_overall_rec, r_rate_quality,
+                     r_rate_difficulty, r_rate_workload, r_comment_text, r_my_grade, r_my_major)
+VALUES (5, 1, current_timestamp, current_timestamp, 1, 1, 2, 5, '给包包打 call', null, 0);
 INSERT INTO reviews (r_course_id, r_user_id, r_create_time, r_last_update_time, r_overall_rec, r_rate_quality,
                      r_rate_difficulty, r_rate_workload, r_comment_text, r_my_grade, r_my_major)
 VALUES (1, 1, current_timestamp, current_timestamp, 1, 1, 2, 5, '呜呜呜呜👴最喜欢这个课了', null, 0);
