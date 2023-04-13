@@ -214,3 +214,11 @@ VALUES (4, 3, current_timestamp, current_timestamp, 4, 2, 2, 2,
 INSERT INTO reviews (r_course_id, r_user_id, r_create_time, r_last_update_time, r_overall_rec, r_rate_quality,
                      r_rate_difficulty, r_rate_workload, r_comment_text, r_my_grade, r_my_major)
 VALUES (4, 4, current_timestamp, current_timestamp, 4, 2, 2, 2, '1111111', null, 0);
+
+CREATE MATERIALIZED VIEW AvgRating AS
+(
+    SELECT r_course_id, AVG(r_overall_rec) AS r_avg_overall_rec, AVG(r_rate_quality) AS r_avg_rate_quality,
+           AVG(r_rate_difficulty) AS r_avg_rate_difficulty, AVG(r_rate_workload) AS r_avg_rate_workload
+    FROM reviews
+    GROUP BY r_course_id
+);
